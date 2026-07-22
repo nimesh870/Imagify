@@ -28,14 +28,14 @@ const CreatePost = () => {
   return (
     <div className="min-h-screen bg-[#1a0533] pt-28 pb-20">
       <Container>
-        <div className="mb-10">
+          <div className="mb-6 sm:mb-10">
           <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight bg-linear-to-r from-purple-300 to-rose-400 bg-clip-text text-transparent">
             Create Post
           </h1>
           <p className="text-[#fef3c7]/60 mt-2">Share your vision with the world</p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 items-start">
+        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-start">
           {/* ─── Left Column: Upload ─── */}
           <div className="space-y-6">
             {/* Upload zone */}
@@ -83,27 +83,27 @@ const CreatePost = () => {
           </div>
 
           {/* Form */}
-          <div className="bg-[#0d0218] rounded-2xl p-8 border border-purple-500/10 space-y-6">
+          <div className="bg-[#0d0218] rounded-2xl p-4 sm:p-8 border border-purple-500/10 space-y-6">
             <form action="#" onSubmit={handleSubmit}>
                       <label className="cursor-pointer">
-                      <div className="relative bg-[#0d0218] rounded-2xl py-20 px-8 mb-1.5 flex flex-col items-centerjustify-center
-                      border-2 border-dashed border-purple-500/30 group-hover:border-purple-400/60
-                     group-hover:bg-purple-500/5 transition-all duration-500">
+                      <div className="relative bg-[#0d0218] rounded-2xl py-12 sm:py-20 px-4 sm:px-8 mb-1.5 flex flex-col items-center justify-center
+                       border-2 border-dashed border-purple-500/30 group-hover:border-purple-400/60
+                      group-hover:bg-purple-500/5 transition-all duration-500">
 
-                        <div className="w-full max-w-md h-16 text-center rounded-md bg-linear-to-br
-                       from-purple-500/20 to-rose-500/20 flex mx-auto justify-evenly items-center
-                        mb-4 group-hover:scale-110 transition-transform duration-300 cursor-pointer">
+                        <div className="w-full max-w-xs sm:max-w-md text-center rounded-md bg-linear-to-br
+                       from-purple-500/20 to-rose-500/20 flex flex-col sm:flex-row items-center justify-center gap-3
+                        py-4 sm:h-16 mb-4 group-hover:scale-110 transition-transform duration-300 cursor-pointer px-4">
                         <input
                           id='fileUpload'
                           type="file"
                           name="imgURI"
                           accept="image/*"
-                          className="text-white"
+                          className="text-white text-xs sm:text-sm w-full sm:w-auto"
                         />
 
                         {/* Icon */}
                         <svg
-                          className="w-8 h-8 text-purple-400"
+                          className="w-6 sm:w-8 h-6 sm:h-8 text-purple-400 shrink-0"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -117,7 +117,7 @@ const CreatePost = () => {
                         </svg>
                       </div>
 
-                    <p className="text-lg font-bold text-[#fef3c7] mb-1">Drop your image here</p>
+                    <p className="text-base sm:text-lg font-bold text-[#fef3c7] mb-1">Drop your image here</p>
                     <p className="text-sm text-[#fef3c7]/50">or click to browse</p>
                     <p className="text-xs text-[#fef3c7]/30 mt-4">PNG, JPG, WebP up to 10MB</p>
                     </div>

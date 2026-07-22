@@ -55,11 +55,11 @@ const Home = () => {
 
         {/* Hero content */}
         <Container>
-          <div className="relative z-10 max-w-3xl mx-auto text-center pt-32 pb-20">
+            <div className="relative z-10 max-w-3xl mx-auto text-center pt-24 sm:pt-32 pb-16 sm:pb-20">
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-purple-400 mb-6 animate-pulse" style={{ animationDuration: '3s' }}>
               Creative Studio
             </p>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.1] mb-6 bg-gradient-to-r from-purple-300 via-purple-400 to-rose-400 bg-clip-text text-transparent">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.1] mb-6 bg-gradient-to-r from-purple-300 via-purple-400 to-rose-400 bg-clip-text text-transparent">
               Where Images<br />Tell Stories
             </h1>
             <p className="text-lg md:text-xl text-[#fef3c7]/70 max-w-xl mx-auto mb-10 leading-relaxed">
@@ -78,12 +78,12 @@ const Home = () => {
       </section>
 
       {/* ─── CTA Banner ─── */}
-      <section className="relative py-24 overflow-hidden">
+      <section className="relative py-16 sm:py-24 overflow-hidden">
         <div className="absolute inset-0 bg-linear-to-r from-purple-600 via-purple-700 to-rose-600" />
         <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent" />
         <Container>
           <div className="relative z-10 text-center">
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
               Ready to Share Your Vision?
             </h2>
             <p className="text-white/70 text-lg mb-8 max-w-md mx-auto">

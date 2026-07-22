@@ -13,7 +13,7 @@ const Footer = () => {
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-purple-500 to-rose-500" />
 
       <Container>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 py-12 sm:py-16">
           <div className="col-span-2 md:col-span-1">
             <button onClick={() => {/* Route to / */}} className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-purple-400 via-purple-500 to-rose-400 bg-clip-text text-transparent">
               Imagify

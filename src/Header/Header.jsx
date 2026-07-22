@@ -29,7 +29,7 @@ const Header = () => {
     >
       <Container>
         <nav className="flex items-center justify-between py-4">
-          <div className="flex items-center gap-10">
+          <div className="flex items-center gap-4 sm:gap-10">
             <button onClick={() => navigate('/')} className="text-2xl font-extrabold tracking-tight
              bg-linear-to-r from-purple-400 via-purple-500 to-rose-400
               bg-clip-text text-transparent">
@@ -56,7 +56,7 @@ const Header = () => {
 
           <button
             onClick={() => navigate('/create-post')}
-            className="px-6 py-2.5 text-sm font-bold uppercase tracking-widest
+            className="px-3 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-bold uppercase tracking-widest
              text-white bg-linear-to-r from-purple-500 to-rose-500
               rounded-xl hover:scale-105 transition-all duration-300 shadow-lg
                shadow-purple-500/30 hover:shadow-purple-500/50"
