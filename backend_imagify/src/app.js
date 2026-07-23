@@ -7,7 +7,8 @@ const cors = require('cors')
 const app = express();
 app.use(express.json())
 app.use(cors({
-    origin : "http://localhost:5173"
+    origin: "https://imagify-two-alpha.vercel.app",
+    credentials: true
 }))
 
 const upload = multer({storage : multer.memoryStorage()}) // keeps incoming raw image bytes in RAM as a Buffer
