@@ -16,7 +16,7 @@ const CreatePost = () => {
     try {
       event.preventDefault()
       const formData = new FormData(event.target)
-      await axios.post("http://localhost:8000/create-post", formData)
+      await axios.post("https://imagify-mm8e.onrender.com/create-post", formData)
       console.log("Posted successfully")
       navigate('/feed')
     } catch (error) {

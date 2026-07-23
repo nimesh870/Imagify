@@ -7,7 +7,7 @@ const Feed = () => {
   const [posts, setPosts] = useState([])
 
   useEffect( () => {
-    axios.get("http://localhost:8000/feed")
+    axios.get("https://imagify-mm8e.onrender.com/feed")
     .then( (res) =>  {
       setPosts(res.data.data)
     })
@@ -24,22 +24,20 @@ const Feed = () => {
           <div className="mt-2 w-24 h-1 bg-linear-to-r from-purple-500 to-rose-500 rounded-full" />
         </div>
 
-      {posts.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+      {posts?.length > 0 ? (
+        <div className="columns-2 sm:columns-3 lg:columns-4 xl:columns-5 gap-4 sm:gap-6 space-y-4 sm:space-y-6">
           {posts.map( (post) => (
             <div key={post._id}
-            className="group bg-[#0d0218] border border-purple-500/10 rounded-2xl
+            className="break-inside-avoid group bg-[#0d0218] border border-purple-500/10 rounded-2xl
             overflow-hidden cursor-pointer transition-all duration-500
             hover:border-purple-500/30 hover:shadow-xl hover:shadow-purple-900/20"
             >
-              <div className="overflow-hidden">
-                <img
-                  src={post.imgURI}
-                  alt={post.caption}
-                  loading="lazy"
-                  className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-              </div>
+              <img
+                src={post.imgURI}
+                alt={post.caption}
+                loading="lazy"
+                className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+              />
               <div className="p-3 sm:p-4">
                 <p className="text-sm sm:text-base font-semibold text-white line-clamp-2">{post.caption}</p>
               </div>
