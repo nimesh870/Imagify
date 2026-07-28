@@ -6,6 +6,11 @@ import { createBrowserRouter , RouterProvider } from 'react-router-dom'
 import Home from './Home/Home.jsx'
 import CreatePost from './CreatePost/CreatePost.jsx'
 import Feed from './Feed/Feed.jsx'
+import Login from './Auth/Login.jsx'
+import Register from './Auth/Register.jsx'
+import { Provider } from 'react-redux'
+import {store} from './store/store.js'
+import AuthLayout from './AuthLayout.jsx'
 
 const router = createBrowserRouter([
   {
@@ -19,12 +24,22 @@ const router = createBrowserRouter([
 
       {
         path : '/create-post',
-        element : <CreatePost />
+        element : <AuthLayout authentication> <CreatePost /> </AuthLayout>
       }, 
 
       {
         path : '/feed',
-        element : <Feed />
+        element : <AuthLayout authentication> <Feed /> </AuthLayout>
+      },
+
+      {
+        path : '/login',
+        element : <AuthLayout authentication = {false}> <Login /> </AuthLayout>
+      },
+
+      {
+        path : '/register',
+        element : <AuthLayout authentication = {false}> <Register /> </AuthLayout>
       }
     ]
   }
@@ -32,6 +47,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>,
 )
