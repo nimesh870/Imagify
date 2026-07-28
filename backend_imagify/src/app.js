@@ -3,9 +3,17 @@ const multer = require('multer');
 const uploadImgFile = require('./services/storage.services')
 const postModel = require('./models/post.models')
 const cors = require('cors')
+const cookieParser = require('cookie-parser')
+const authRoutes = require('./routes/auth.routes')
 
 const app = express();
+
 app.use(express.json())
+
+app.use(cookieParser())
+
+app.use('/api/auth' , authRoutes)
+
 app.use(cors({
     origin: "https://imagyfy.netlify.app",
     credentials: true
