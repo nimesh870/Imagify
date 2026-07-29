@@ -8,16 +8,16 @@ const authRoutes = require('./routes/auth.routes')
 
 const app = express();
 
+app.use(cors({
+    origin: "https://imagyfy.netlify.app",
+    credentials: true
+}))
+
 app.use(express.json())
 
 app.use(cookieParser())
 
 app.use('/api/auth' , authRoutes)
-
-app.use(cors({
-    origin: "https://imagyfy.netlify.app",
-    credentials: true
-}))
 
 const upload = multer({storage : multer.memoryStorage()}) // keeps incoming raw image bytes in RAM as a Buffer
 
@@ -34,13 +34,13 @@ app.post('/create-post' , upload.single("imgURI") , async (req , res) => {
         const response = await uploadImgFile(req.file.buffer)
         
         if (response) {
-            const createPost = postModel.create({
+            const createPost = await postModel.create({
                 imgURI : response.url,
                 caption
             })
 
             res.status(201).json({
-                messgae : "Post created successfully.",
+                message : "Post created successfully.",
             })
         }
 
@@ -58,8 +58,9 @@ app.get('/feed' , async(req , res) => {
         const data = await postModel.find()
 
         if (data.length === 0) {
-            return res.status(400).json({
-                error : "No data found."
+            return res.status(200).json({
+                error : "No data found.",
+                data : []
             })
         }
 
