@@ -1,19 +1,28 @@
 import { useState, useEffect } from 'react'
 import Container from '../Container/Container'
 import { Navigate, useNavigate , useLocation } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector , useDispatch } from 'react-redux'
+import authService from '../services/APIService'
+import {logout} from '../features/authSlice'
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
   const authStatus = useSelector(state => state.auth.status)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  const handleLogout = () => {
+    authService.logout()
+    dispatch(logout())
+    navigate('/login')
+  }
 
   const navItems = [
     { name: 'Home', path: '/' , active : true },
@@ -59,23 +68,57 @@ const Header = () => {
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3">
-            <button
-              onClick={() => navigate('/login')}
-              className="px-3 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium
-               text-[#fef3c7]/80 hover:text-white border border-purple-500/30
-               rounded-xl hover:border-purple-500/50 transition-all duration-300"
-            >
-              Log In
-            </button>
-            <button
-              onClick={() => navigate('/register')}
-              className="px-3 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-bold uppercase tracking-widest
-               text-white bg-linear-to-r from-purple-500 to-rose-500
-               rounded-xl hover:scale-105 transition-all duration-300 shadow-lg
-               shadow-purple-500/30 hover:shadow-purple-500/50"
-            >
-              Sign Up
-            </button>
+            {authStatus ? (
+              // logged in — show logout only
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-2
+                 px-3 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-bold
+                 uppercase tracking-widest text-white
+                 bg-linear-to-r from-purple-500 to-rose-500
+                 rounded-xl hover:scale-105 transition-all duration-300
+                 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50"
+              >
+                {/* logout icon */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                  />
+                </svg>
+                Logout
+              </button>
+            ) : (
+              // not logged in — show login and signup
+              <>
+                <button
+                  onClick={() => navigate('/login')}
+                  className="px-3 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium
+                   text-[#fef3c7]/80 hover:text-white border border-purple-500/30
+                   rounded-xl hover:border-purple-500/50 transition-all duration-300"
+                >
+                  Log In
+                </button>
+                <button
+                  onClick={() => navigate('/register')}
+                  className="px-3 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-bold
+                   uppercase tracking-widest text-white
+                   bg-linear-to-r from-purple-500 to-rose-500
+                   rounded-xl hover:scale-105 transition-all duration-300
+                   shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50"
+                >
+                  Sign Up
+                </button>
+              </>
+            )}
           </div>
         </nav>
       </Container>
