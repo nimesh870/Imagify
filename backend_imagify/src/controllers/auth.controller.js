@@ -15,15 +15,15 @@ const registerUser = async (req , res) => {
             })
         }
 
-        const existingUserWithEmail = await authModel.find({email})
+        const existingUserWithEmail = await authModel.findOne({email})
 
-        if (existingUserWithhEmail) {
+        if (existingUserWithEmail) {
             return res.status(409).json({
                 error : "Email already in use."
             })
         }
 
-        const existingUserWithUsername = await authModel.find({username})
+        const existingUserWithUsername = await authModel.findOne({username})
 
         if (existingUserWithUsername) {
             return res.status(409).json({
@@ -43,7 +43,7 @@ const registerUser = async (req , res) => {
             id : createUser._id
         } , jwtSecretKey , {expiresIn : "7d"})
 
-        res.cookies("token" , token , {
+        res.cookie("token" , token , {
             httpOnly : true
         })
 
@@ -71,7 +71,7 @@ const loginUser = async (req , res) => {
             })
         }
 
-        const user = await authModel.find({email})
+        const user = await authModel.findOne({email})
 
         if (!user) {
             return res.status(401).json({
@@ -91,7 +91,7 @@ const loginUser = async (req , res) => {
             id : user._id
         } , jwtSecretKey , {expiresIn : "7d"})
 
-        res.cookies("token" , token , {
+        res.cookie("token" , token , {
             httpOnly : true
         })
 
