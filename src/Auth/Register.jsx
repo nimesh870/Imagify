@@ -24,6 +24,7 @@ const Register = () => {
       localStorage.setItem('token' , response.token)
 
       dispatch(login(response.user))
+      console.log(import.meta.env.VITE_API_URI)
 
       navigate('/')
       
