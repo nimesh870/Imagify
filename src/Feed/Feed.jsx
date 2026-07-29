@@ -1,15 +1,18 @@
 import axios from 'axios'
 import Container from '../Container/Container'
-import { v4 as uuidv4 } from 'uuid';
 import { useState , useEffect } from 'react'
+import {api} from '../services/APIService'
 
 const Feed = () => {
   const [posts, setPosts] = useState([])
 
   useEffect( () => {
-    axios.get("https://imagify-mm8e.onrender.com/feed")
+    api.get('/feed')
     .then( (res) =>  {
       setPosts(res.data.data)
+    })
+    .catch((error) => {
+      console.error('Failed to fetch posts:', error)
     })
   }, [])
 

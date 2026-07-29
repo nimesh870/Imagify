@@ -1,6 +1,7 @@
 import Container from '../Container/Container'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import {api} from '../services/APIService'
 
 const categories = ['Nature', 'Architecture', 'Portrait', 'Abstract', 'Travel', 'Fashion', 'Street', 'Minimal']
 
@@ -16,7 +17,7 @@ const CreatePost = () => {
     try {
       event.preventDefault()
       const formData = new FormData(event.target)
-      await axios.post("https://imagify-mm8e.onrender.com/create-post", formData)
+      await api.post("/create-post", formData)
       console.log("Posted successfully")
       navigate('/feed')
     } catch (error) {
