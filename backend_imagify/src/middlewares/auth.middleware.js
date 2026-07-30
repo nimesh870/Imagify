@@ -18,7 +18,7 @@ const protect = async (req , res , next) => {
 
         const decodeToken = jwt.verify(token , jwtSecretKey)
 
-        const user = await authModel.findById(decodeToken.userId)
+        const user = await authModel.findById(decodeToken.id)
 
         if (!user) {
             return res.status(401).json({
