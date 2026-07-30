@@ -22,10 +22,8 @@ const userSchema = new Mongoose.Schema({
 })
 
 userSchema.methods.toJSON = function () {
-    user = this.toObject()
-    if (user) {
-        delete user.password
-    }
+    const user = this.toObject()
+    delete user.password
     return user;
 }
 
