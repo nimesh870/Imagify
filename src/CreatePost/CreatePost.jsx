@@ -17,7 +17,11 @@ const CreatePost = () => {
     try {
       event.preventDefault()
       const formData = new FormData(event.target)
-      await api.post("/create-post", formData)
+      await api.post("/create-post", formData , {
+        headers : {
+           'Content-Type': undefined 
+        }
+      })
       console.log("Posted successfully")
       navigate('/feed')
     } catch (error) {

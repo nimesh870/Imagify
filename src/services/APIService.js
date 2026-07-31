@@ -3,9 +3,6 @@ import axios from 'axios'
 export const api = axios.create({
     baseURL : import.meta.env.VITE_API_URI,
     withCredentials: true,    // sends cookies automatically
-    headers : {
-        "Content-Type" : "application/json"
-    }
 })
 
 // checks if token exists in localStorage and attaches it to the Authorization header
