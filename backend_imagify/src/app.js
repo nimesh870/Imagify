@@ -50,6 +50,8 @@ app.post('/create-post' , upload.single("imgURI") , async (req , res) => {
 
 
     } catch (error) {
+        console.error('CREATE POST ERROR:', error.message)
+        console.error('FULL ERROR:', error)
         res.status(500).json({
             error : "Cannot upload post.",
             details : error.message
