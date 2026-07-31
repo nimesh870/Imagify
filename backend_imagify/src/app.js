@@ -33,16 +33,20 @@ app.post('/create-post' , upload.single("imgURI") , async (req , res) => {
 
         const response = await uploadImgFile(req.file.buffer)
         
-        if (response) {
-            const createPost = await postModel.create({
+        if (!response) {
+            return res.status(500).json({
+                error : "File uplaod failed."
+            })
+        }
+
+        const createPost = await postModel.create({
                 imgURI : response.url,
                 caption
             })
 
-            res.status(201).json({
+        res.status(201).json({
                 message : "Post created successfully.",
             })
-        }
 
 
     } catch (error) {
